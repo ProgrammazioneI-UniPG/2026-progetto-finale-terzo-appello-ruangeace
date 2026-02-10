@@ -2,11 +2,12 @@
 # Progetto-finale-2025-Cosestrane
 Progetto finale Programmazione Procedurale UniPG Informatica
 
-## Nome: 
+## Nome: Ruam Gabriel
 
-## Cognome: 
+## Cognome: Amorim Caria
 
-## Matricola:
+## Matricola: 380401
 
 ## Commenti/modifiche al progetto:
+Questo è il vecchio proggeto "Prince of Inertia"
 
