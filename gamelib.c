@@ -1268,6 +1268,10 @@ static void ins_stanza() {
     nuova_stanza->tipo_stanza = rand() % 10;
     nuova_stanza->riferimento_stanza = numero_stanze;
 
+    nuova_stanza->nemicoVivo = false;
+    nuova_stanza->nemico = NULL;
+    nuova_stanza->tipoNemico = nessuno;
+
 
     // Se è la prima stanza, la creiamo direttamente
     if (pFirst == NULL) {
@@ -1346,7 +1350,7 @@ static void ins_stanza() {
         nuova_stanza->tipo_trabocchetto = tegola;
     } else if(probabilita < 84){
         nuova_stanza->tipo_trabocchetto = lame;
-    } else if(92){
+    } else if(probabilita < 92){
         nuova_stanza->tipo_trabocchetto = caduta;
     } else{
         nuova_stanza->tipo_trabocchetto = burrone;
@@ -1378,6 +1382,9 @@ static void ins_stanza() {
             if(tmp->tipoNemico == Jaffar){
                 tmp->tipoNemico = nessuno;
                 tmp->nemicoVivo = false;
+                if(tmp->nemico != NULL){
+                free(tmp->nemico);
+                }
                 tmp->nemico = NULL;
             }
             tmp = tmp->next;
@@ -1472,11 +1479,15 @@ static void canc_stanza() {
 
     if(cancella_jaffar){
         if(pLast != NULL){
+
+            if(pLast->nemico != NULL){
+            free(pLast->nemico);
+            }
           pLast->nemicoVivo = true;
           pLast->tipoNemico = Jaffar;
           pLast->nemico = inizializza_nemico(Jaffar);
           isJaffar = true;
-
+            
         } else{
 
             isJaffar = false;
@@ -1556,6 +1567,10 @@ static void genera_random() {
             nuova_stanza->stanza_sotto = NULL;
             nuova_stanza->next = NULL;
             nuova_stanza->riferimento_stanza = numero_stanze;
+
+            nuova_stanza->nemicoVivo = false;
+            nuova_stanza->tipoNemico = nessuno;
+            nuova_stanza->nemico = NULL;
     
             nuova_stanza->tipo_stanza = rand() % 10;
             
